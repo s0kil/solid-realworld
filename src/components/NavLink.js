@@ -1,7 +1,7 @@
 import { useRouter } from "../store";
 import { useTransition } from "solid-js";
 
-export default props => {
+export default (props) => {
   const { getParams } = useRouter(),
     [, start] = useTransition({ timeoutMs: 250 });
   return (

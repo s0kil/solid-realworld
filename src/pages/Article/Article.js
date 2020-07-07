@@ -4,7 +4,7 @@ import { useStore } from "../../store";
 
 import Comments from "./Comments";
 
-const ArticleMeta = props => (
+const ArticleMeta = (props) => (
   <div class="article-meta">
     <NavLink href={`@${props.article?.author.username}`} route="profile">
       <img src={props.article?.author.image} alt="" />
@@ -56,7 +56,7 @@ export default ({ slug }) => {
             <div innerHTML={article() && marked(article()?.body, { sanitize: true })} />
 
             <ul class="tag-list">
-              {article()?.tagList.map(tag => (
+              {article()?.tagList.map((tag) => (
                 <li class="tag-default tag-pill tag-outline">{tag}</li>
               ))}
             </ul>

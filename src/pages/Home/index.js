@@ -2,7 +2,7 @@ import { createEffect, createMemo, useTransition, lazy } from "solid-js";
 import { useStore, useRouter } from "../../store";
 const Home = lazy(() => import("./Home"));
 
-export default function() {
+export default function () {
   const [store, { loadArticles, setPage }] = useStore(),
     { token, appName } = store,
     { location } = useRouter(),
@@ -23,7 +23,7 @@ export default function() {
           return { tag: tab() };
       }
     },
-    handleSetPage = page => {
+    handleSetPage = (page) => {
       start(() => {
         setPage(page);
         loadArticles(getPredicate());

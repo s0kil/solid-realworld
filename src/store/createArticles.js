@@ -4,7 +4,7 @@ export default function createArticles(agent, store, loadState, setState, loadAr
   const [state, actions] = store;
   store[1] = {
     ...actions,
-    setPage: page => setState({ page }),
+    setPage: (page) => setState({ page }),
     loadArticles(predicate) {
       const articles = $req(predicate).then(({ articles, articlesCount }) => {
         setState({ totalPagesCount: Math.ceil(articlesCount / LIMIT) });
@@ -25,14 +25,14 @@ export default function createArticles(agent, store, loadState, setState, loadAr
     async makeFavorite(slug) {
       const article = state.articles[slug];
       if (article && !article.favorited) {
-        setState("articles", slug, s => ({
+        setState("articles", slug, (s) => ({
           favorited: true,
           favoritesCount: s.favoritesCount + 1
         }));
         try {
           await agent.Articles.favorite(slug);
         } catch (err) {
-          setState("articles", slug, s => ({
+          setState("articles", slug, (s) => ({
             favorited: false,
             favoritesCount: s.favoritesCount - 1
           }));
@@ -43,14 +43,14 @@ export default function createArticles(agent, store, loadState, setState, loadAr
     async unmakeFavorite(slug) {
       const article = state.articles[slug];
       if (article && article.favorited) {
-        setState("articles", slug, s => ({
+        setState("articles", slug, (s) => ({
           favorited: false,
           favoritesCount: s.favoritesCount - 1
         }));
         try {
           await agent.Articles.unfavorite(slug);
         } catch (err) {
-          setState("articles", slug, s => ({
+          setState("articles", slug, (s) => ({
             favorited: true,
             favoritesCount: s.favoritesCount + 1
           }));

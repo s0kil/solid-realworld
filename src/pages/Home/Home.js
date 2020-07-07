@@ -52,7 +52,7 @@ export default ({ appName, token, handleSetPage, tab, store }) => {
               <Suspense fallback="Loading tags...">
                 <div class="tag-list">
                   <For each={store.tags}>
-                    {tag => (
+                    {(tag) => (
                       <a href={`#/?tab=${tag}`} class="tag-pill tag-default">
                         {tag}
                       </a>

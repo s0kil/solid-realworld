@@ -5,19 +5,19 @@ import ListErrors from "../../components/ListErrors";
 export default ({ slug }) => {
   const [store, { createArticle, updateArticle }] = useStore(),
     [state, setState] = createState({ tagInput: "", tagList: [] }),
-    updateState = field => ev => setState(field, ev.target.value),
+    updateState = (field) => (ev) => setState(field, ev.target.value),
     handleAddTag = () => {
       if (state.tagInput) {
-        setState(s => {
+        setState((s) => {
           s.tagList.push(s.tagInput.trim());
           s.tagInput = "";
         });
       }
     },
-    handleRemoveTag = tag => {
-      !state.inProgress && setState("tagList", tags => tags.filter(t => t !== tag));
+    handleRemoveTag = (tag) => {
+      !state.inProgress && setState("tagList", (tags) => tags.filter((t) => t !== tag));
     },
-    handleTagInputKeyDown = ev => {
+    handleTagInputKeyDown = (ev) => {
       switch (ev.keyCode) {
         case 13: // Enter
         case 9: // Tab
@@ -29,13 +29,13 @@ export default ({ slug }) => {
           break;
       }
     },
-    submitForm = ev => {
+    submitForm = (ev) => {
       ev.preventDefault();
       setState({ inProgress: true });
       const { inProgress, tagsInput, ...article } = state;
       (slug ? updateArticle : createArticle)(article)
-        .then(article => (location.hash = `/article/${article.slug}`))
-        .catch(errors => setState({ errors }))
+        .then((article) => (location.hash = `/article/${article.slug}`))
+        .catch((errors) => setState({ errors }))
         .finally(() => setState({ inProgress: false }));
     };
   createEffect(() => {
@@ -95,7 +95,7 @@ export default ({ slug }) => {
                   />
                   <div class="tag-list">
                     <For each={state.tagList}>
-                      {tag => (
+                      {(tag) => (
                         <span class="tag-default tag-pill">
                           <i class="ion-close-round" onClick={[handleRemoveTag, tag]} />
                           {tag}

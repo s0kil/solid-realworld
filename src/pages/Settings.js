@@ -11,8 +11,8 @@ export default () => {
       email: store.currentUser.email,
       password: ""
     }),
-    updateState = field => ev => setState(field, ev.target.value),
-    submitForn = ev => {
+    updateState = (field) => (ev) => setState(field, ev.target.value),
+    submitForn = (ev) => {
       ev.preventDefault();
       const user = Object.assign({}, state);
       if (!user.password) delete user.password;
@@ -20,7 +20,7 @@ export default () => {
       setState({ updatingUser: true });
       updateUser(user)
         .then(() => (location.hash = `/@${user.username}`))
-        .catch(errors => setState({ errors }))
+        .catch((errors) => setState({ errors }))
         .finally(() => setState({ updatingUser: false }));
     };
 

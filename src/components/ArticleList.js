@@ -1,7 +1,7 @@
 import { useStore } from "../store";
 import ArticlePreview from "./ArticlePreview";
 
-export default props => {
+export default (props) => {
   const [{ token }, { unmakeFavorite, makeFavorite }] = useStore(),
     handleClickFavorite = (article, e) => {
       e.preventDefault();
@@ -18,7 +18,7 @@ export default props => {
         each={props.articles}
         fallback={<div class="article-preview">No articles are here... yet.</div>}
       >
-        {article => (
+        {(article) => (
           <ArticlePreview article={article} token={token} onClickFavorite={handleClickFavorite} />
         )}
       </For>
@@ -26,7 +26,7 @@ export default props => {
         <nav>
           <ul class="pagination">
             <For each={[...Array(props.totalPagesCount).keys()]}>
-              {v => (
+              {(v) => (
                 <li
                   class="page-item"
                   classList={{ active: props.currentPage === v }}

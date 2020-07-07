@@ -44,10 +44,12 @@ export default ({ article, token, onClickFavorite }) => {
         <p>{description}</p>
         <span>Read more...</span>
         <ul class="tag-list">
-          {/*@once*/
-          tagList.map(tag => (
-            <li class="tag-default tag-pill tag-outline" textContent={tag} />
-          ))}
+          {
+            /*@once*/
+            tagList.map((tag) => (
+              <li class="tag-default tag-pill tag-outline" textContent={tag} />
+            ))
+          }
         </ul>
       </NavLink>
     </div>

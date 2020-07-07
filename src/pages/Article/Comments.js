@@ -37,9 +37,9 @@ const Comment = ({ comment, currentUser, onDelete }) => {
 
 const CommentInput = ({ slug, createComment, loadComments, currentUser }) => {
   const [state, setState] = createState({ body: "" }),
-    handleBodyChange = ev => setState({ body: ev.target.value }),
+    handleBodyChange = (ev) => setState({ body: ev.target.value }),
     [, start] = useTransition({ timeoutMs: 500 }),
-    createCommentHandler = ev => {
+    createCommentHandler = (ev) => {
       ev.preventDefault();
       setState({ isCreatingComment: true });
       createComment({ body: state.body })
@@ -47,7 +47,7 @@ const CommentInput = ({ slug, createComment, loadComments, currentUser }) => {
           setState({ body: "" });
           start(() => loadComments(slug));
         })
-        .catch(errors => setState({ errors }))
+        .catch((errors) => setState({ errors }))
         .finally(() => setState({ isCreatingComment: false }));
     };
   return (
@@ -78,7 +78,7 @@ const CommentInput = ({ slug, createComment, loadComments, currentUser }) => {
 export default () => {
   const [store, { createComment, deleteComment, loadComments }] = useStore(),
     { currentUser, articleSlug } = store,
-    handleDeleteComment = commentId => deleteComment(commentId);
+    handleDeleteComment = (commentId) => deleteComment(commentId);
   return (
     <div class="col-xs-12 col-md-8 offset-md-2">
       {currentUser ? (
@@ -98,7 +98,7 @@ export default () => {
       )}
       <Suspense fallback="Loading comments">
         <For each={store.comments}>
-          {comment => (
+          {(comment) => (
             <Comment comment={comment} currentUser={currentUser} onDelete={handleDeleteComment} />
           )}
         </For>

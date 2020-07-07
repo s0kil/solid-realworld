@@ -15,7 +15,7 @@ export default function createComments(agent, store, loadState, setState) {
       if (errors) throw errors;
     },
     async deleteComment(id) {
-      setState("comments", cs => cs.filter(c => c.id !== id));
+      setState("comments", (cs) => cs.filter((c) => c.id !== id));
       try {
         await agent.Comments.delete(state.articleSlug, id);
       } catch (err) {

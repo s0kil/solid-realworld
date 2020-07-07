@@ -13,14 +13,14 @@ export default () => {
     ) : (
       <NavLink route="login">Have an account?</NavLink>
     ),
-    handleSubmit = e => {
+    handleSubmit = (e) => {
       e.preventDefault();
       setState({ inProgress: true });
       const p = isLogin
         ? login(state.email, state.password)
         : register(state.username, state.email, state.password);
       p.then(() => (location.hash = "/"))
-        .catch(errors => setState({ errors }))
+        .catch((errors) => setState({ errors }))
         .finally(() => setState({ inProgress: false }));
     };
 
@@ -40,7 +40,7 @@ export default () => {
                     type="text"
                     placeholder="Username"
                     value={state.username}
-                    onChange={e => setState({ username: e.target.value })}
+                    onChange={(e) => setState({ username: e.target.value })}
                   />
                 </fieldset>
               )}
@@ -50,7 +50,7 @@ export default () => {
                   type="text"
                   placeholder="Email"
                   value={state.email}
-                  onChange={e => setState({ email: e.target.value })}
+                  onChange={(e) => setState({ email: e.target.value })}
                 />
               </fieldset>
               <fieldset class="form-group">
@@ -59,7 +59,7 @@ export default () => {
                   type="password"
                   placeholder="Password"
                   value={state.password}
-                  onChange={e => setState({ password: e.target.value })}
+                  onChange={(e) => setState({ password: e.target.value })}
                 />
               </fieldset>
               <button

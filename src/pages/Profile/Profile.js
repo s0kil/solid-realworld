@@ -2,14 +2,14 @@ import { useStore, useRouter } from "../../store";
 import NavLink from "../../components/NavLink";
 import ArticleList from "../../components/ArticleList";
 
-export default props => {
+export default (props) => {
   const [store, { setPage, loadArticles, unfollow, follow }] = useStore(),
     { location } = useRouter(),
-    handleClick = ev => {
+    handleClick = (ev) => {
       ev.preventDefault();
       store.profile.following ? unfollow() : follow();
     },
-    handleSetPage = page => {
+    handleSetPage = (page) => {
       setPage(page);
       loadArticles();
     },
